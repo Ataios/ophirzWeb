@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to My Website</title>
+    <title>Welcome to Ophirz Land</title>
     <style>
         * {
             margin: 0;
@@ -12,170 +12,372 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Arial', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             display: flex;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 2px 0 20px rgba(0, 0, 0, 0.1);
+            padding: 20px 0;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar h3 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .app-list {
+            list-style: none;
+        }
+
+        .app-item {
+            margin: 0 15px 10px;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .app-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .app-link {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            text-decoration: none;
+            color: #333;
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .app-link:hover {
+            background: linear-gradient(45deg, #007bff, #0056b3);
+            color: white;
+            border-left-color: #ffd700;
+        }
+
+        .app-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 12px;
+            border-radius: 4px;
+            display: flex;
             align-items: center;
             justify-content: center;
+            font-weight: bold;
+            font-size: 12px;
             color: white;
         }
 
-        .container {
-            text-align: center;
-            max-width: 800px;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            animation: fadeInUp 1s ease-out;
+        .sonarr { background: #35c5f0; }
+        .radarr { background: #ffc230; }
+        .qbittorrent { background: #1e88e5; }
+        .mealie { background: #4caf50; }
+        .homeassistant { background: #18bcf2; }
+
+        .main-content {
+            flex: 1;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
         }
 
-        h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, #fff, #f0f0f0);
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #f9ca24, #f0932b, #eb4d4b);
+        }
+
+        .header h1 {
+            font-size: 3em;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: glow 2s ease-in-out infinite alternate;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-        .subtitle {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            font-weight: 300;
+        .welcome-image {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            animation: bounce 2s infinite;
         }
 
-        .description {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 2.5rem;
-            opacity: 0.8;
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
         }
 
-        .cta-button {
-            display: inline-block;
-            padding: 15px 30px;
-            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+        .calendar-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            flex: 1;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .calendar-title {
+            font-size: 1.8em;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .calendar-nav {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
             color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.1rem;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
         }
 
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(255, 107, 107, 0.4);
-            background: linear-gradient(45deg, #ff5252, #ff7979);
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .features {
+        .calendar-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 2px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
-        .feature {
-            padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s ease;
+        .calendar-day-header {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 10px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 0.9em;
         }
 
-        .feature:hover {
-            transform: translateY(-5px);
+        .calendar-day {
+            background: white;
+            min-height: 120px;
+            padding: 10px;
+            border: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
-        .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+        .calendar-day:hover {
+            background: #f8f9fa;
+            transform: scale(1.02);
+            z-index: 1;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
-        .feature h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
+        .day-number {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
         }
 
-        .feature p {
-            font-size: 0.9rem;
-            opacity: 0.8;
+        .today {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes glow {
-            from {
-                text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-            }
-            to {
-                text-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
-            }
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-            
-            .container {
-                margin: 1rem;
-                padding: 1.5rem;
-            }
-            
-            .features {
-                grid-template-columns: 1fr;
-            }
+        .today .day-number {
+            color: white;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome!</h1>
-        <p class="subtitle">Your website is now live on GitHub Pages</p>
-        <p class="description">
-            Congratulations! You've successfully set up your custom domain with GitHub Pages hosting. 
-            This is your starting point to build something amazing on the web.
-        </p>
-        
-        <a href="#" class="cta-button">Get Started</a>
-        
-        <div class="features">
-            <div class="feature">
-                <div class="feature-icon">🚀</div>
-                <h3>Fast & Reliable</h3>
-                <p>Powered by GitHub's global CDN for lightning-fast loading times</p>
+    <div class="sidebar">
+        <h3>Applications</h3>
+        <ul class="app-list">
+            <li class="app-item">
+                <a href="#" class="app-link">
+                    <div class="app-icon sonarr">S</div>
+                    Sonarr
+                </a>
+            </li>
+            <li class="app-item">
+                <a href="#" class="app-link">
+                    <div class="app-icon radarr">R</div>
+                    Radarr
+                </a>
+            </li>
+            <li class="app-item">
+                <a href="#" class="app-link">
+                    <div class="app-icon qbittorrent">Q</div>
+                    qBittorrent
+                </a>
+            </li>
+            <li class="app-item">
+                <a href="#" class="app-link">
+                    <div class="app-icon mealie">M</div>
+                    Mealie
+                </a>
+            </li>
+            <li class="app-item">
+                <a href="#" class="app-link">
+                    <div class="app-icon homeassistant">H</div>
+                    Home Assistant
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <div class="welcome-image">🏰</div>
+            <h1>Welcome to Ophirz Land</h1>
+            <p style="color: #666; font-size: 1.1em;">The Most Magical Dashboard on Earth</p>
+        </div>
+
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <h2 class="calendar-title">Weekly Calendar</h2>
+                <div class="calendar-nav">
+                    <button class="nav-btn" onclick="previousWeek()">‹ Previous</button>
+                    <button class="nav-btn" onclick="nextWeek()">Next ›</button>
+                </div>
             </div>
-            
-            <div class="feature">
-                <div class="feature-icon">🔒</div>
-                <h3>Secure HTTPS</h3>
-                <p>Automatic SSL certificates keep your site and visitors safe</p>
-            </div>
-            
-            <div class="feature">
-                <div class="feature-icon">📱</div>
-                <h3>Mobile Ready</h3>
-                <p>Responsive design that looks great on all devices</p>
+
+            <div class="calendar-grid" id="calendar">
+                <!-- Calendar will be generated by JavaScript -->
             </div>
         </div>
     </div>
+
+    <script>
+        let currentDate = new Date();
+        
+        function getWeekStart(date) {
+            const d = new Date(date);
+            const day = d.getDay();
+            const diff = d.getDate() - day;
+            return new Date(d.setDate(diff));
+        }
+
+        function formatDate(date) {
+            return date.toLocaleDateString('en-US', { 
+                month: 'long', 
+                day: 'numeric', 
+                year: 'numeric' 
+            });
+        }
+
+        function isToday(date) {
+            const today = new Date();
+            return date.toDateString() === today.toDateString();
+        }
+
+        function generateCalendar() {
+            const calendar = document.getElementById('calendar');
+            const weekStart = getWeekStart(currentDate);
+            
+            calendar.innerHTML = '';
+            
+            // Day headers
+            const dayHeaders = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            dayHeaders.forEach(day => {
+                const header = document.createElement('div');
+                header.className = 'calendar-day-header';
+                header.textContent = day;
+                calendar.appendChild(header);
+            });
+            
+            // Week days
+            for (let i = 0; i < 7; i++) {
+                const dayDate = new Date(weekStart);
+                dayDate.setDate(weekStart.getDate() + i);
+                
+                const dayDiv = document.createElement('div');
+                dayDiv.className = 'calendar-day';
+                if (isToday(dayDate)) {
+                    dayDiv.classList.add('today');
+                }
+                
+                dayDiv.innerHTML = `
+                    <div class="day-number">${dayDate.getDate()}</div>
+                    <div style="font-size: 0.8em; color: #666;">${dayDate.toLocaleDateString('en-US', { month: 'short' })}</div>
+                `;
+                
+                calendar.appendChild(dayDiv);
+            }
+        }
+
+        function previousWeek() {
+            currentDate.setDate(currentDate.getDate() - 7);
+            generateCalendar();
+        }
+
+        function nextWeek() {
+            currentDate.setDate(currentDate.getDate() + 7);
+            generateCalendar();
+        }
+
+        // Initialize calendar
+        generateCalendar();
+
+        // Add some interactive effects
+        document.querySelectorAll('.app-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const appName = link.textContent.trim();
+                alert(`Launching ${appName}... (This would normally open the application)`);
+            });
+        });
+    </script>
 </body>
 </html>
